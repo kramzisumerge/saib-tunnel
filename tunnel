@@ -183,7 +183,7 @@ html += renderTable(
         { key: "taskName", label: "Task Name" },
         { key: "taskNumber", label: "Task Number" },
         { key: "taskCompletionDate", label: "Task Completion Date" },
-        { key: "comments", label: "Comments" }
+        { key: "comments", label: "Comments" },
         { key: "decision", label: "Decision" }
     ]
 );
