@@ -1,82 +1,180 @@
-var req = tw.local.prepaymentRequest;
+var req = tw.local.prepaymentRequest || {};
 
-// fallback for testing (so it doesn’t crash if null)
-if (!req) {
-    req = {
-        requestId: "TEST-123",
-        requester: "Kareem",
-        amount: 5000,
-        ccMembersDecision: [
-            { name: "Ali", decision: "Approved", comment: "Looks good" },
-            { name: "Sara", decision: "Rejected", comment: "Missing docs" }
-        ]
-    };
+/* 🔹 Helper: safe value */
+function val(v) {
+    return (v === null || v === undefined || v === "") ? "-" : v;
 }
 
-var html = "";
+/* 🔹 Helper: render key-value section */
+function renderSection(title, obj, fields) {
+    var html = "<div class='section'>";
+    html += "<h3>" + title + "</h3>";
 
-html += "<!DOCTYPE html>";
-html += "<html>";
-html += "<head>";
-html += "<meta charset='UTF-8'>";
-html += "<style>";
+    for (var i = 0; i < fields.length; i++) {
+        var key = fields[i].key;
+        var label = fields[i].label;
 
-html += "body { font-family: Arial, sans-serif; padding: 20px; }";
-html += "h1 { text-align: center; }";
-html += ".section { margin-top: 20px; }";
-html += ".label { font-weight: bold; }";
+        html += "<div><span class='label'>" + label + ":</span> " + val(obj[key]) + "</div>";
+    }
 
-html += "table { width: 100%; border-collapse: collapse; margin-top: 10px; }";
-html += "th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }";
-html += "th { background-color: #f2f2f2; }";
+    html += "</div>";
+    return html;
+}
 
-html += "@media print {";
-html += "  body { font-size: 12px; }";
-html += "}";
+/* 🔹 Helper: render table (dynamic arrays) */
+function renderTable(title, list, columns) {
+    var html = "<div class='section'>";
+    html += "<h3>" + title + "</h3>";
 
-html += "</style>";
-html += "</head>";
+    if (!list || list.length === 0) {
+        html += "<div>No data available</div></div>";
+        return html;
+    }
 
-html += "<body>";
+    html += "<table><tr>";
 
-/* 🔹 TITLE */
-html += "<h1>Prepayment Request</h1>";
+    // headers
+    for (var i = 0; i < columns.length; i++) {
+        html += "<th>" + columns[i].label + "</th>";
+    }
+    html += "</tr>";
 
-/* 🔹 BASIC INFO */
-html += "<div class='section'>";
-html += "<div><span class='label'>Request ID:</span> " + req.requestId + "</div>";
-html += "<div><span class='label'>Requester:</span> " + req.requester + "</div>";
-html += "<div><span class='label'>Amount:</span> " + req.amount + "</div>";
-html += "</div>";
-
-/* 🔹 CC MEMBERS DECISIONS (DYNAMIC) */
-html += "<div class='section'>";
-html += "<h3>CC Members Decisions</h3>";
-
-if (req.ccMembersDecision && req.ccMembersDecision.length > 0) {
-
-    html += "<table>";
-    html += "<tr><th>Name</th><th>Decision</th><th>Comment</th></tr>";
-
-    for (var i = 0; i < req.ccMembersDecision.length; i++) {
-        var member = req.ccMembersDecision[i];
-
+    // rows
+    for (var j = 0; j < list.length; j++) {
         html += "<tr>";
-        html += "<td>" + member.name + "</td>";
-        html += "<td>" + member.decision + "</td>";
-        html += "<td>" + member.comment + "</td>";
+        for (var i = 0; i < columns.length; i++) {
+            var key = columns[i].key;
+            html += "<td>" + val(list[j][key]) + "</td>";
+        }
         html += "</tr>";
     }
 
-    html += "</table>";
-
-} else {
-    html += "<div>No decisions available</div>";
+    html += "</table></div>";
+    return html;
 }
 
-html += "</div>";
+/* 🔥 START HTML */
+var html = "";
+html += "<!DOCTYPE html><html><head><meta charset='UTF-8'>";
+html += "<style>";
+html += "body { font-family: Arial; padding: 20px; }";
+html += "h1 { text-align: center; }";
+html += ".section { margin-top: 20px; }";
+html += ".label { font-weight: bold; display:inline-block; width:200px; }";
+html += "table { width:100%; border-collapse: collapse; margin-top:10px; }";
+html += "th, td { border:1px solid #ccc; padding:6px; }";
+html += "th { background:#f2f2f2; }";
+html += "</style></head><body>";
 
-html += "</body>";
-html += "</html>";
+html += "<h1>Prepayment Request</h1>";
+
+/* 🔹 1. Initiation Form */
+html += renderSection(
+    "Initiation Form Details",
+    req.initiationFormDetails || {},
+    [
+        { key: "requestId", label: "Request ID" },
+        { key: "date", label: "Date" },
+        { key: "createdBy", label: "Created By" }
+    ]
+);
+
+/* 🔹 2. Customer Info */
+html += renderSection(
+    "Customer Information",
+    req.customerInformation || {},
+    [
+        { key: "customerName", label: "Customer Name" },
+        { key: "customerId", label: "Customer ID" },
+        { key: "accountNumber", label: "Account Number" }
+    ]
+);
+
+/* 🔹 3. Loan Details */
+html += renderSection(
+    "Prepayment Loan Details",
+    req.prepaymentLoanDetails || {},
+    [
+        { key: "loanAmount", label: "Loan Amount" },
+        { key: "interestRate", label: "Interest Rate" },
+        { key: "tenure", label: "Tenure" }
+    ]
+);
+
+/* 🔹 4. Penalty Charges */
+html += renderSection(
+    "Penalty Charges",
+    req.penaltyChargesDetails || {},
+    [
+        { key: "penaltyAmount", label: "Penalty Amount" },
+        { key: "reason", label: "Reason" }
+    ]
+);
+
+/* 🔹 5. Scheduled Installments */
+html += renderTable(
+    "Scheduled Installments",
+    req.scheduledInstallments,
+    [
+        { key: "installmentNo", label: "Installment #" },
+        { key: "amount", label: "Amount" },
+        { key: "dueDate", label: "Due Date" }
+    ]
+);
+
+/* 🔹 6. Commission Calculation */
+html += renderSection(
+    "Calculation Principle Commission",
+    req.calculationPrincipleComission || {},
+    [
+        { key: "commission", label: "Commission" },
+        { key: "vat", label: "VAT" }
+    ]
+);
+
+/* 🔹 7. Attachments */
+html += renderTable(
+    "Attachments",
+    req.attachments,
+    [
+        { key: "fileName", label: "File Name" },
+        { key: "uploadedBy", label: "Uploaded By" },
+        { key: "uploadDate", label: "Upload Date" }
+    ]
+);
+
+/* 🔹 8. History Logs */
+html += renderTable(
+    "History Logs",
+    req.historyLogs,
+    [
+        { key: "action", label: "Action" },
+        { key: "user", label: "User" },
+        { key: "date", label: "Date" }
+    ]
+);
+
+/* 🔹 9. RM Table */
+html += renderTable(
+    "RM Records",
+    req.rmTable,
+    [
+        { key: "name", label: "Name" },
+        { key: "status", label: "Status" }
+    ]
+);
+
+/* 🔹 10. CC Members */
+html += renderTable(
+    "CC Members Decisions",
+    req.ccTable,
+    [
+        { key: "name", label: "Name" },
+        { key: "decision", label: "Decision" },
+        { key: "comment", label: "Comment" }
+    ]
+);
+
+html += "</body></html>";
 
 tw.local.generatedHTML = html;
