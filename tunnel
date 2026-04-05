@@ -245,3 +245,5 @@ CREATE TABLE DELEGATION_TASKS (
     FOREIGN KEY (delegation_request_id)
     REFERENCES DELEGATION_REQUESTS(id)
 );
+
+https://cpd-bawuat.apps.cp4bauatsaibocp.saibnet2.saib.com/baw-bawins1/ProcessPortal
