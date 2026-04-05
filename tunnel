@@ -105,7 +105,7 @@ html += renderSection(
         { key: "loanOutstandingAmount", label: "Loan Outstanding Amount" },
         { key: "prepaymentAmount", label: "Prepayment Amount" },
         { key: "loanOutstandingAmount", label: "Loan Outstanding Amount" },
-        { key: "fullOrPartialSettlement", label: Full or Partial Settlement" },
+        { key: "fullOrPartialSettlement", label: "Full or Partial Settlement" },
         { key: "originalDrawdownDate", label: "Original Drawdown Date" },
         { key: "previousRolloverDate", label: "Previous Rollover Date" },
         { key: "finalMaturityDate", label: "Final Maturity Date" },
@@ -161,12 +161,12 @@ html += renderTable(
     [
         { key: "daysAccured", label: "Days Accured" },
         { key: "remainingDaysToFinalMaturity", label: "Remaining Days to Final Maturity" },
-        { key: "accuredCommissionAmount", label: "Accured Commission Amount" }
-        { key: "penaltyBreakFundingCost", label: "Penalty Break Funding Cost" }
-        { key: "processingFee", label: "Processing Fee" }
-        { key: "netCommissionDueFromCustomer", label: "Net Commission Due From Customer" }
-        { key: "total", label: "Total" }
-        { key: "penaltyWaivedAmount", label: "Penalty Waived Amount" }
+        { key: "accuredCommissionAmount", label: "Accured Commission Amount" },
+        { key: "penaltyBreakFundingCost", label: "Penalty Break Funding Cost" },
+        { key: "processingFee", label: "Processing Fee" },
+        { key: "netCommissionDueFromCustomer", label: "Net Commission Due From Customer" },
+        { key: "total", label: "Total" },
+        { key: "penaltyWaivedAmount", label: "Penalty Waived Amount" },
         { key: "processingFeeWaivedAmount", label: "Processing Fee Waived Amount" }
 
 
