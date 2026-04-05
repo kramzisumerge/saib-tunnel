@@ -73,9 +73,14 @@ html += renderSection(
     "Initiation Form Details",
     req.initiationFormDetails || {},
     [
-        { key: "requestId", label: "Request ID" },
-        { key: "date", label: "Date" },
-        { key: "createdBy", label: "Created By" }
+        { key: "onBehalfOf", label: "On Behalf Of" },
+        { key: "loanReferenceNumber", label: "Loan Reference Number" },
+        { key: "sourceSystem", label: "Source System" },
+        { key: "requestDate", label: "Request Date" },
+        { key: "requestNumber", label: "Request Number" },
+        { key: "requestType", label: "Request Type" },
+        { key: "initiatorRole", label: "Initiator Role" },
+        { key: "requestInitiator", label: "Request Initiator" },
     ]
 );
 
@@ -84,9 +89,10 @@ html += renderSection(
     "Customer Information",
     req.customerInformation || {},
     [
+        { key: "idNo", label: "ID Number" },
+        { key: "customerACNo", label: "Customer Account Number" },
         { key: "customerName", label: "Customer Name" },
-        { key: "customerId", label: "Customer ID" },
-        { key: "accountNumber", label: "Account Number" }
+        { key: "region", label: "Region" }
     ]
 );
 
@@ -95,9 +101,16 @@ html += renderSection(
     "Prepayment Loan Details",
     req.prepaymentLoanDetails || {},
     [
-        { key: "loanAmount", label: "Loan Amount" },
-        { key: "interestRate", label: "Interest Rate" },
-        { key: "tenure", label: "Tenure" }
+        { key: "loanType", label: "Loan Amount" },
+        { key: "loanOutstandingAmount", label: "Loan Outstanding Amount" },
+        { key: "prepaymentAmount", label: "Prepayment Amount" },
+        { key: "loanOutstandingAmount", label: "Loan Outstanding Amount" },
+        { key: "fullOrPartialSettlement", label: Full or Partial Settlement" },
+        { key: "originalDrawdownDate", label: "Original Drawdown Date" },
+        { key: "previousRolloverDate", label: "Previous Rollover Date" },
+        { key: "finalMaturityDate", label: "Final Maturity Date" },
+        { key: "prepaymentValueDate", label: "Prepayment Value Date" },
+        { key: "exisitingLoanProfitRate", label: "Exisiting Loan Profit Rate" },
     ]
 );
 
@@ -106,8 +119,18 @@ html += renderSection(
     "Penalty Charges",
     req.penaltyChargesDetails || {},
     [
-        { key: "penaltyAmount", label: "Penalty Amount" },
-        { key: "reason", label: "Reason" }
+        { key: "commissionToBeChargedUpTo", label: "Commission To Be Charged Up To" },
+        { key: "penaltyWaivedReducedAsPerCCR", label: "Penalty Waived or Reduces as per CCR" },
+        { key: "penaltyRate", label: "Penalty Rate" },
+        { key: "waivedOrReduced", label: "Waived or Reduced" },
+        { key: "waivedOrReducedPercentage", label: "Waived or Reduced Percentage" },
+        { key: "reductionJustification", label: "Reduction Justification" },
+        { key: "treasuryPenaltyRate", label: "Treasury Penalty Rate" },
+        { key: "rolloverProcessingFee", label: "Rollover Processing Fee" },
+        { key: "waivedOrReducedOrNo", label: "Waived or Reduced or No" },
+        { key: "waivedReducedAmount", label: "Waived or Reduced Amount" },
+
+
     ]
 );
 
@@ -116,16 +139,15 @@ html += renderTable(
     "Scheduled Installments",
     req.scheduledInstallments,
     [
-        { key: "installmentNo", label: "Installment #" },
-        { key: "amount", label: "Amount" },
-        { key: "dueDate", label: "Due Date" }
-    ]
+        { key: "scheduledInstallment", label: "Scheduled Installment" },
+        { key: "deductFrom", label: "Deduct From" },
+]
 );
 
 /* 🔹 6. Commission Calculation */
 html += renderSection(
     "Calculation Principle Commission",
-    req.calculationPrincipleComission || {},
+    req.calculationPrincipleCommission || {},
     [
         { key: "commission", label: "Commission" },
         { key: "vat", label: "VAT" }
@@ -137,9 +159,17 @@ html += renderTable(
     "Attachments",
     req.attachments,
     [
-        { key: "fileName", label: "File Name" },
-        { key: "uploadedBy", label: "Uploaded By" },
-        { key: "uploadDate", label: "Upload Date" }
+        { key: "daysAccured", label: "Days Accured" },
+        { key: "remainingDaysToFinalMaturity", label: "Remaining Days to Final Maturity" },
+        { key: "accuredCommissionAmount", label: "Accured Commission Amount" }
+        { key: "penaltyBreakFundingCost", label: "Penalty Break Funding Cost" }
+        { key: "processingFee", label: "Processing Fee" }
+        { key: "netCommissionDueFromCustomer", label: "Net Commission Due From Customer" }
+        { key: "total", label: "Total" }
+        { key: "penaltyWaivedAmount", label: "Penalty Waived Amount" }
+        { key: "processingFeeWaivedAmount", label: "Processing Fee Waived Amount" }
+
+
     ]
 );
 
@@ -148,9 +178,13 @@ html += renderTable(
     "History Logs",
     req.historyLogs,
     [
-        { key: "action", label: "Action" },
-        { key: "user", label: "User" },
-        { key: "date", label: "Date" }
+        { key: "username", label: "Username" },
+        { key: "userId", label: "User ID" },
+        { key: "taskName", label: "Task Name" },
+        { key: "taskNumber", label: "Task Number" },
+        { key: "taskCompletionDate", label: "Task Completion Date" },
+        { key: "comments", label: "Comments" }
+        { key: "decision", label: "Decision" }
     ]
 );
 
@@ -159,8 +193,12 @@ html += renderTable(
     "RM Records",
     req.rmTable,
     [
-        { key: "name", label: "Name" },
-        { key: "status", label: "Status" }
+        { key: "decision", label: "Decision" },
+        { key: "proposedPenatltyRate", label: "Proposed Penalty Rate" },
+        { key: "proposedProcessingRolloverFee", label: "Proposed Processing Rollover Fee" },
+        { key: "comments", label: "Comments" },
+        { key: "decisionDate", label: "Decision Date" }
+
     ]
 );
 
@@ -171,7 +209,11 @@ html += renderTable(
     [
         { key: "name", label: "Name" },
         { key: "decision", label: "Decision" },
-        { key: "comment", label: "Comment" }
+        { key: "typeOfApproval", label: "Type of Approval" },
+        { key: "conditionType", label: "Condition Type" },
+        { key: "expectedComplianceDate", label: "Expected Compliance Date" },
+        { key: "condition", label: "Condition" },
+        { key: "decisionDate", label: "Decision Date" }
     ]
 );
 
