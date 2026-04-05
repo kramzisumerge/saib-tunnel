@@ -1,0 +1,82 @@
+var req = tw.local.prepaymentRequest;
+
+// fallback for testing (so it doesn’t crash if null)
+if (!req) {
+    req = {
+        requestId: "TEST-123",
+        requester: "Kareem",
+        amount: 5000,
+        ccMembersDecision: [
+            { name: "Ali", decision: "Approved", comment: "Looks good" },
+            { name: "Sara", decision: "Rejected", comment: "Missing docs" }
+        ]
+    };
+}
+
+var html = "";
+
+html += "<!DOCTYPE html>";
+html += "<html>";
+html += "<head>";
+html += "<meta charset='UTF-8'>";
+html += "<style>";
+
+html += "body { font-family: Arial, sans-serif; padding: 20px; }";
+html += "h1 { text-align: center; }";
+html += ".section { margin-top: 20px; }";
+html += ".label { font-weight: bold; }";
+
+html += "table { width: 100%; border-collapse: collapse; margin-top: 10px; }";
+html += "th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }";
+html += "th { background-color: #f2f2f2; }";
+
+html += "@media print {";
+html += "  body { font-size: 12px; }";
+html += "}";
+
+html += "</style>";
+html += "</head>";
+
+html += "<body>";
+
+/* 🔹 TITLE */
+html += "<h1>Prepayment Request</h1>";
+
+/* 🔹 BASIC INFO */
+html += "<div class='section'>";
+html += "<div><span class='label'>Request ID:</span> " + req.requestId + "</div>";
+html += "<div><span class='label'>Requester:</span> " + req.requester + "</div>";
+html += "<div><span class='label'>Amount:</span> " + req.amount + "</div>";
+html += "</div>";
+
+/* 🔹 CC MEMBERS DECISIONS (DYNAMIC) */
+html += "<div class='section'>";
+html += "<h3>CC Members Decisions</h3>";
+
+if (req.ccMembersDecision && req.ccMembersDecision.length > 0) {
+
+    html += "<table>";
+    html += "<tr><th>Name</th><th>Decision</th><th>Comment</th></tr>";
+
+    for (var i = 0; i < req.ccMembersDecision.length; i++) {
+        var member = req.ccMembersDecision[i];
+
+        html += "<tr>";
+        html += "<td>" + member.name + "</td>";
+        html += "<td>" + member.decision + "</td>";
+        html += "<td>" + member.comment + "</td>";
+        html += "</tr>";
+    }
+
+    html += "</table>";
+
+} else {
+    html += "<div>No decisions available</div>";
+}
+
+html += "</div>";
+
+html += "</body>";
+html += "</html>";
+
+tw.local.generatedHTML = html;
