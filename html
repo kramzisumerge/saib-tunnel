@@ -1,1 +1,183 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><style>body { font-family: Arial; padding: 20px; }h1 { text-align: center; }.section { margin-top: 20px; }.label { font-weight: bold; display:inline-block; width:200px; }table { width:100%; border-collapse: collapse; margin-top:10px; }th, td { border:1px solid #ccc; padding:6px; }th { background:#f2f2f2; }</style></head><body><h1>Prepayment Request</h1><div class='section'><h3>Initiation Form Details</h3><div><span class='label'>On Behalf Of:</span> -</div><div><span class='label'>Loan Reference Number:</span> -</div><div><span class='label'>Source System:</span> -</div><div><span class='label'>Request Date:</span> -</div><div><span class='label'>Request Number:</span> -</div><div><span class='label'>Request Type:</span> -</div><div><span class='label'>Initiator Role:</span> -</div><div><span class='label'>Request Initiator:</span> -</div></div><div class='section'><h3>Customer Information</h3><div><span class='label'>ID Number:</span> -</div><div><span class='label'>Customer Account Number:</span> -</div><div><span class='label'>Customer Name:</span> -</div><div><span class='label'>Region:</span> -</div></div><div class='section'><h3>Prepayment Loan Details</h3><div><span class='label'>Loan Amount:</span> -</div><div><span class='label'>Loan Outstanding Amount:</span> -</div><div><span class='label'>Prepayment Amount:</span> -</div><div><span class='label'>Loan Outstanding Amount:</span> -</div><div><span class='label'>Full or Partial Settlement:</span> -</div><div><span class='label'>Original Drawdown Date:</span> -</div><div><span class='label'>Previous Rollover Date:</span> -</div><div><span class='label'>Final Maturity Date:</span> -</div><div><span class='label'>Prepayment Value Date:</span> -</div><div><span class='label'>Exisiting Loan Profit Rate:</span> -</div></div><div class='section'><h3>Penalty Charges</h3><div><span class='label'>Commission To Be Charged Up To:</span> -</div><div><span class='label'>Penalty Waived or Reduces as per CCR:</span> -</div><div><span class='label'>Penalty Rate:</span> -</div><div><span class='label'>Waived or Reduced:</span> -</div><div><span class='label'>Waived or Reduced Percentage:</span> -</div><div><span class='label'>Reduction Justification:</span> -</div><div><span class='label'>Treasury Penalty Rate:</span> -</div><div><span class='label'>Rollover Processing Fee:</span> -</div><div><span class='label'>Waived or Reduced or No:</span> -</div><div><span class='label'>Waived or Reduced Amount:</span> -</div></div><div class='section'><h3>Scheduled Installments</h3><div>No data available</div></div><div class='section'><h3>Calculation Principle Commission</h3><div><span class='label'>Commission:</span> -</div><div><span class='label'>VAT:</span> -</div></div><div class='section'><h3>Attachments</h3><div>No data available</div></div><div class='section'><h3>History Logs</h3><div>No data available</div></div><div class='section'><h3>RM Records</h3><div>No data available</div></div><div class='section'><h3>CC Members Decisions</h3><div>No data available</div></div></body></html>
+tw.local.htmlContent = ""
++ "<!DOCTYPE html>"
++ "<html lang='en'>"
++ "<head>"
++ "<meta charset='UTF-8'>"
++ "<title>Prepayment Request</title>"
+
++ "<style>"
++ "body { font-family: Calibri, Arial, sans-serif; font-size: 13px; padding: 15px; }"
++ "h2 { text-align: center; margin-bottom: 10px; }"
++ ".header-table, .section-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }"
++ ".header-table td { border: none; padding: 3px; }"
++ "table { width: 100%; border-collapse: collapse; }"
++ "th, td { border: 1px solid #000; padding: 5px; text-align: left; }"
++ "th { background-color: #f2f2f2; }"
++ ".section-title { font-weight: bold; margin: 10px 0 5px 0; }"
++ ".no-data { font-style: italic; }"
++ ".logo { height: 50px; }"
++ "</style>"
+
++ "</head>"
++ "<body>"
+
++ "<table class='header-table'>"
++ "<tr>"
++ "<td><strong>Bank:</strong> " + tw.local.bankName + "</td>"
++ "<td><strong>Date:</strong> " + new Date().toLocaleDateString() + "</td>"
++ "<td rowspan='2' style='text-align:right;'>"
++ "<img src='" + tw.local.bankLogoURL + "' class='logo'/>"
++ "</td>"
++ "</tr>"
++ "<tr>"
++ "<td><strong>Department:</strong> Finance & Loans</td>"
++ "<td><strong>Request No:</strong> " + tw.local.prepaymentRequest.requestNumber + "</td>"
++ "</tr>"
++ "</table>"
+
++ "<h2>Prepayment Request</h2>"
+
+/* ================= TRANSACTION REFERENCES ================= */
+
++ "<div class='section-title'>TA – Transaction References</div>"
++ "<table class='section-table'>"
++ "<tr>"
++ "<td><strong>Requesting Department</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.initiatorRole + "</td>"
++ "<td><strong>Date & Time</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.requestDate + "</td>"
++ "</tr>"
+
++ "<tr>"
++ "<td><strong>Requesting Branch</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.region + "</td>"
++ "<td><strong>Source System</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.sourceSystem + "</td>"
++ "</tr>"
+
++ "<tr>"
++ "<td><strong>Initiator ID / Name</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.requestInitiator + "</td>"
++ "<td><strong>System Reference</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.loanReferenceNumber + "</td>"
++ "</tr>"
+
++ "<tr>"
++ "<td><strong>Request No</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.requestNumber + "</td>"
++ "<td><strong>External Reference</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.onBehalfOf + "</td>"
++ "</tr>"
++ "</table>"
+
+/* ================= TRANSACTION DETAILS ================= */
+
++ "<div class='section-title'>TA – Transaction Details</div>"
++ "<table class='section-table'>"
+
++ "<tr>"
++ "<td><strong>Customer Number</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.customerId + "</td>"
++ "<td><strong>Request Date/Time</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.requestDate + "</td>"
++ "</tr>"
+
++ "<tr>"
++ "<td><strong>Account Number</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.customerAccountNumber + "</td>"
++ "<td><strong>Transaction Type</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.requestType + "</td>"
++ "</tr>"
+
++ "<tr>"
++ "<td><strong>Customer Name</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.customerName + "</td>"
++ "<td><strong>Transaction Amount</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.prepaymentAmount + "</td>"
++ "</tr>"
+
++ "<tr>"
++ "<td><strong>Account Currency</strong></td>"
++ "<td>-</td>"
++ "<td><strong>Transaction Currency</strong></td>"
++ "<td>-</td>"
++ "</tr>"
+
++ "<tr>"
++ "<td><strong>Account Type</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.fullOrPartialSettlement + "</td>"
++ "<td><strong>Exchange Rate</strong></td>"
++ "<td>-</td>"
++ "</tr>"
+
++ "<tr>"
++ "<td><strong>Customer Email</strong></td>"
++ "<td>-</td>"
++ "<td><strong>Value Date</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.prepaymentValueDate + "</td>"
++ "</tr>"
+
++ "<tr>"
++ "<td><strong>Relationship Manager</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.requestInitiator + "</td>"
++ "<td><strong>Beneficiary Name</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.customerName + "</td>"
++ "</tr>"
+
++ "</table>"
+
+/* ================= PENALTIES ================= */
+
++ "<div class='section-title'>Penalties & Charges</div>"
++ "<table class='section-table'>"
+
++ "<tr>"
++ "<td><strong>Commission</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.commissionToBeCharged + "</td>"
++ "<td><strong>Penalty Rate</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.penaltyRate + "</td>"
++ "</tr>"
+
++ "<tr>"
++ "<td><strong>Penalty Waived</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.penaltyWaived + "</td>"
++ "<td><strong>Waived/Reduced %</strong></td>"
++ "<td>" + tw.local.prepaymentRequest.waivedOrReducedPercentage + "</td>"
++ "</tr>"
+
++ "<tr>"
++ "<td><strong>Reduction Justification</strong></td>"
++ "<td colspan='3'>" + tw.local.prepaymentRequest.reductionJustification + "</td>"
++ "</tr>"
+
++ "</table>"
+
+/* ================= OPTIONAL SECTIONS ================= */
+
++ "<div class='section-title'>Attachments</div>"
++ "<div class='no-data'>" + (tw.local.prepaymentRequest.attachments || "No data available") + "</div>"
+
++ "<div class='section-title'>RM Records</div>"
++ "<div class='no-data'>" + (tw.local.prepaymentRequest.rmRecords || "No data available") + "</div>"
+
++ "<div class='section-title'>CC Members Decisions</div>"
++ "<div class='no-data'>" + (tw.local.prepaymentRequest.ccMembersDecisions || "No data available") + "</div>"
+
+/* ================= APPROVAL HISTORY ================= */
+
++ "<div class='section-title'>Approval History</div>"
++ "<table>"
++ "<tr>"
++ "<th>User ID</th>"
++ "<th>User Name</th>"
++ "<th>Date/Time</th>"
++ "<th>Action</th>"
++ "<th>Comments</th>"
++ "</tr>"
++ "<tr>"
++ "<td colspan='5' class='no-data'>No data available</td>"
++ "</tr>"
++ "</table>"
+
++ "</body>"
++ "</html>";
