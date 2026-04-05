@@ -232,3 +232,16 @@ CREATE TABLE DELEGATION_REQUESTS (
     delegation_end_date DATETIME2,
     created_at DATETIME2 DEFAULT SYSDATETIME()
 );
+
+
+CREATE TABLE DELEGATION_TASKS (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    delegation_request_id INT NOT NULL,
+    task_id NVARCHAR(255),
+    current_assigned_user NVARCHAR(255),
+    created_at DATETIME2 DEFAULT SYSDATETIME(),
+
+    CONSTRAINT FK_DelegationTasks_Requests
+    FOREIGN KEY (delegation_request_id)
+    REFERENCES DELEGATION_REQUESTS(id)
+);
