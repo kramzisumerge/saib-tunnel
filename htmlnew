@@ -44,18 +44,18 @@ tw.local.generatedHTML = ""
 /* ── Header: title left, logo right ── */
 + "table.header-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }"
 + "table.header-table td { border: none; padding: 4px 0; vertical-align: middle; }"
-+ ".report-title { font-size: 18px; font-weight: bold; }"
-+ "img.bank-logo { height: 45px; object-fit: contain; float: right; }"
++ ".report-title { font-size: 32px; font-weight: bold; color: #555555;  }"
++ "img.bank-logo { height: 45px; object-fit: contain; float: left; }"
 
 /* ── Section tables ── */
 + "table.sec { width: 100%; border-collapse: collapse; margin-bottom: 10px; }"
 + "table.sec td, table.sec th { border: 1px solid #000; padding: 4px 6px; vertical-align: middle; }"
 
 /* Section header row — light grey exactly as in the PDF (#d9d9d9) */
-+ "td.sh { background-color: #d9d9d9; font-weight: bold; text-align: left; font-size: 12px; }"
++ "td.sh { background-color: #d9d9d9; font-weight: Bold; text-align: left; font-size: 12px; }"
 
 /* Label cells — slightly lighter grey (#f2f2f2), bold, fixed width */
-+ "td.lbl { background-color: #f2f2f2; font-weight: bold; width: 20%; }"
++ "td.lbl { background-color: #f2f2f2; font-weight: Bold; width: 20%; }"
 
 /* Value cells — plain white */
 + "td.val { background-color: #ffffff; width: 30%; }"
@@ -93,7 +93,7 @@ tw.local.generatedHTML = ""
 +   "<tr><td class='sh' colspan='4'>Initiation Form Details</td></tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Requesting Department</td>"
++     "<td class='lbl'>Initiator Role</td>"
 +     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.initiatorRole + "</td>"
 +     "<td class='lbl'>Date &amp; Time</td>"
 +     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.requestDate + "</td>"
@@ -107,9 +107,9 @@ tw.local.generatedHTML = ""
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Initiator ID / Name</td>"
++     "<td class='lbl'>Request Initiator / Name</td>"
 +     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.requestInitiator + "</td>"
-+     "<td class='lbl'>System Reference</td>"
++     "<td class='lbl'>Loan Reference Number</td>"
 +     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.loanReferenceNumber + "</td>"
 +   "</tr>"
 
@@ -130,9 +130,9 @@ tw.local.generatedHTML = ""
 +   "<tr><td class='sh' colspan='4'>Customer Information</td></tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Customer Number</td>"
++     "<td class='lbl'>Customer ID Number</td>"
 +     "<td class='val'>" + tw.local.prepaymentRequest.customerInformation.idNo + "</td>"
-+     "<td class='lbl'>Account Number</td>"
++     "<td class='lbl'>Customer Account Number</td>"
 +     "<td class='val'>" + tw.local.prepaymentRequest.customerInformation.customerACNo + "</td>"
 +   "</tr>"
 
@@ -154,17 +154,40 @@ tw.local.generatedHTML = ""
 +   "<tr><td class='sh' colspan='4'>Prepayment / Loan Details</td></tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Settlement Type</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.fullOrPartialSettlement + "</td>"
++     "<td class='lbl'>Loan Type</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.loanType + "</td>"
++     "<td class='lbl'>Previous Rollover Date</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.previousRolloverDate + "</td>"
++   "<tr>"
+
+
++   "<tr>"
++     "<td class='lbl'>Loan Outstanding Amount</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.loanOutstandingAmount + "</td>"
++     "<td class='lbl'>Next Rollover Date</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.nextRolloverDate + "</td>"
++   "<tr>"
+
+
++   "<tr>"
++     "<td class='lbl'>Existing Loan Profit Rate</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.existingLoanProfitRate + "</td>"
++     "<td class='lbl'>Final Maturity Date</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.finalMaturityDate + "</td>"
++   "<tr>"
+
++   "<tr>"
 +     "<td class='lbl'>Prepayment Amount</td>"
 +     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.prepaymentAmount + "</td>"
++     "<td class='lbl'>Prepayment Value Date</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.prepaymentValueDate + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Value Date</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.prepaymentValueDate + "</td>"
-+     "<td class='lbl'></td>"
-+     "<td class='val'></td>"
++     "<td class='lbl'>Settlement Type</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.fullOrPartialSettlement + "</td>"
++     "<td class='lbl'>Original Drawdown Date</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.originalDrawdownDate + "</td>"
 +   "</tr>"
 
 + "</table>"
@@ -179,22 +202,38 @@ tw.local.generatedHTML = ""
 +   "<tr><td class='sh' colspan='4'>Penalties &amp; Charges</td></tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Commission</td>"
++     "<td class='lbl'>Commission To Be Charged Up To</td>"
 +     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.commissionToBeChargedUpTo + "</td>"
 +     "<td class='lbl'>Penalty Rate</td>"
 +     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.penaltyRate + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Penalty Waived / Reduced</td>"
++     "<td class='lbl'>Penalty Waived / Reduced as per CCR</td>"
 +     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.penaltyWaivedReducedAsPerCCR + "</td>"
 +     "<td class='lbl'>Waived / Reduced %</td>"
 +     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedOrReducedPercentage + "</td>"
 +   "</tr>"
 
 +   "<tr>"
++     "<td class='lbl'>Waived / Reduced</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedOrReduced + "</td>"
 +     "<td class='lbl'>Reduction Justification</td>"
 +     "<td class='val' colspan='3'>" + tw.local.prepaymentRequest.penaltyChargesDetails.reductionJustification + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Treasury Penalty Rate</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.treasuryPenaltyRate + "</td>"
++     "<td class='lbl'>Rollover Processing Fee</td>"
++     "<td class='val' colspan='3'>" + tw.local.prepaymentRequest.penaltyChargesDetails.rolloverProcessingFee + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Waived or Reduced or No</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedOrReducedOrNo + "</td>"
++     "<td class='lbl'>Waived or Reduced Amount</td>"
++     "<td class='val' colspan='3'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedReducedAmount + "</td>"
 +   "</tr>"
 
 + "</table>"
