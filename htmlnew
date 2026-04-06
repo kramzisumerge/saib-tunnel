@@ -44,7 +44,7 @@ tw.local.generatedHTML = ""
 /* ── Header: title left, logo right ── */
 + "table.header-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }"
 + "table.header-table td { border: none; padding: 4px 0; vertical-align: middle; }"
-+ ".report-title { font-size: 15px; font-weight: bold; }"
++ ".report-title { font-size: 18px; font-weight: bold; }"
 + "img.bank-logo { height: 45px; object-fit: contain; float: right; }"
 
 /* ── Section tables ── */
@@ -76,8 +76,8 @@ tw.local.generatedHTML = ""
    ════════════════════════════════════════════════════════ */
 + "<table class='header-table'>"
 +   "<tr>"
-+     "<td><span class='report-title'>Prepayment Request Report</span></td>"
-+     "<td style='text-align:right;'><img class='bank-logo' src='" + tw.local.bankLogoURL + "' alt='Saudi Investment Bank'/></td>"
++     "<td style='text-align:left;'><img class='bank-logo' src='data:image/png;base64," + tw.local.bankLogoBase64 + "' alt='Saudi Investment Bank'/></td>"
++     "<td style='text-align:right;'><span class='report-title'>Prepayment Request Report</span></td>"
 +   "</tr>"
 + "</table>"
 
