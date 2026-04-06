@@ -1,0 +1,452 @@
+tw.local.generatedHTML = ""
+
+/* =====================================================================
+   Saudi Investment Bank – Prepayment Request Report
+   BAW Server Script
+
+   SECTIONS:
+     1.  Initiation Form Details
+     2.  Customer Information
+     3.  Prepayment / Loan Details
+     4.  Penalties & Charges
+     5.  Scheduled Installments
+     6.  Calculation: Principal & Commission
+     7.  RM Table (list)
+     8.  CC Table (list)
+     9.  History Logs (list)
+     10. Approval History
+   ===================================================================== */
+
++ "<!DOCTYPE html>"
++ "<html lang='en'>"
++ "<head>"
++ "<meta charset='UTF-8'/>"
++ "<meta name='viewport' content='width=device-width, initial-scale=1.0'/>"
++ "<title>Prepayment Request Report</title>"
+
++ "<style>"
+
++ "*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }"
+
++ "body {"
++   "font-family: Arial, sans-serif;"
++   "font-size: 12px;"
++   "color: #000000;"
++   "background: #ffffff;"
++   "margin: 10px;"
++ "}"
+
++ ".page { max-width: 900px; margin: 0 auto; }"
+
+/* ── Header ── */
++ "table.header-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }"
++ "table.header-table td { border: none; padding: 4px 0; vertical-align: middle; }"
++ ".report-title { font-size: 32px; font-weight: bold; color: #555555; }"
++ "img.bank-logo { height: 45px; object-fit: contain; float: left; }"
+
+/* ── Section tables ── */
++ "table.sec { width: 100%; border-collapse: collapse; margin-bottom: 10px; }"
++ "table.sec td, table.sec th { border: 1px solid #000; padding: 4px 6px; vertical-align: middle; }"
+
+/* Section header row */
++ "td.sh { background-color: #d9d9d9; font-weight: bold; text-align: left; font-size: 12px; }"
+
+/* Label cells */
++ "td.lbl { background-color: #f2f2f2; font-weight: bold; width: 20%; }"
+
+/* Value cells */
++ "td.val { background-color: #ffffff; width: 30%; }"
+
+/* List table column headers */
++ "th.col { background-color: #f2f2f2; font-weight: bold; text-align: left; }"
+
++ ".page-stamp { text-align: right; font-size: 10px; color: #555; margin-bottom: 8px; }"
++ ".report-footer { text-align: right; font-size: 10px; color: #555; margin-top: 6px; }"
+
++ "</style>"
++ "</head>"
++ "<body>"
++ "<div class='page'>"
+
+/* ════════════════════════════════════════════════════════
+   HEADER
+   ════════════════════════════════════════════════════════ */
++ "<table class='header-table'>"
++   "<tr>"
++     "<td style='text-align:left;'><img class='bank-logo' src='data:image/png;base64," + tw.local.bankLogoBase64 + "' alt='Saudi Investment Bank'/></td>"
++     "<td style='text-align:right;'><span class='report-title'>Prepayment Request Report</span></td>"
++   "</tr>"
++ "</table>"
+
++ "<div class='page-stamp'>Page 1 of 1</div>"
+
+/* ════════════════════════════════════════════════════════
+   SECTION 1 – Initiation Form Details
+   ════════════════════════════════════════════════════════ */
++ "<table class='sec'>"
++   "<tr><td class='sh' colspan='4'>Initiation Form Details</td></tr>"
+
++   "<tr>"
++     "<td class='lbl'>Initiator Role</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.initiatorRole + "</td>"
++     "<td class='lbl'>Date &amp; Time</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.requestDate + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Source System</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.sourceSystem + "</td>"
++     "<td class='lbl'>Request Type</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.requestType + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Request Initiator / Name</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.requestInitiator + "</td>"
++     "<td class='lbl'>Loan Reference Number</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.loanReferenceNumber + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Request No</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.requestNumber + "</td>"
++     "<td class='lbl'>On Behalf Of</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.onBehalfOf + "</td>"
++   "</tr>"
+
++ "</table>"
+
+/* ════════════════════════════════════════════════════════
+   SECTION 2 – Customer Information
+   ════════════════════════════════════════════════════════ */
++ "<table class='sec'>"
++   "<tr><td class='sh' colspan='4'>Customer Information</td></tr>"
+
++   "<tr>"
++     "<td class='lbl'>Customer ID Number</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.customerInformation.idNo + "</td>"
++     "<td class='lbl'>Customer Account Number</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.customerInformation.customerACNo + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Customer Name</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.customerInformation.customerName + "</td>"
++     "<td class='lbl'>Branch / Region</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.customerInformation.region + "</td>"
++   "</tr>"
+
++ "</table>"
+
+/* ════════════════════════════════════════════════════════
+   SECTION 3 – Prepayment / Loan Details
+   ════════════════════════════════════════════════════════ */
++ "<table class='sec'>"
++   "<tr><td class='sh' colspan='4'>Prepayment / Loan Details</td></tr>"
+
++   "<tr>"
++     "<td class='lbl'>Loan Type</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.loanType + "</td>"
++     "<td class='lbl'>Previous Rollover Date</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.previousRolloverDate + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Loan Outstanding Amount</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.loanOutstandingAmount + "</td>"
++     "<td class='lbl'>Next Rollover Date</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.nextRolloverDate + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Existing Loan Profit Rate</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.existingLoanProfitRate + "</td>"
++     "<td class='lbl'>Final Maturity Date</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.finalMaturityDate + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Prepayment Amount</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.prepaymentAmount + "</td>"
++     "<td class='lbl'>Prepayment Value Date</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.prepaymentValueDate + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Settlement Type</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.fullOrPartialSettlement + "</td>"
++     "<td class='lbl'>Original Drawdown Date</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.originalDrawdownDate + "</td>"
++   "</tr>"
+
++ "</table>"
+
+/* ════════════════════════════════════════════════════════
+   SECTION 4 – Penalties & Charges
+   ════════════════════════════════════════════════════════ */
++ "<table class='sec'>"
++   "<tr><td class='sh' colspan='4'>Penalties &amp; Charges</td></tr>"
+
++   "<tr>"
++     "<td class='lbl'>Commission To Be Charged Up To</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.commissionToBeChargedUpTo + "</td>"
++     "<td class='lbl'>Penalty Rate</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.penaltyRate + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Penalty Waived / Reduced as per CCR</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.penaltyWaivedReducedAsPerCCR + "</td>"
++     "<td class='lbl'>Waived / Reduced %</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedOrReducedPercentage + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Waived / Reduced</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedOrReduced + "</td>"
++     "<td class='lbl'>Reduction Justification</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.reductionJustification + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Treasury Penalty Rate</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.treasuryPenaltyRate + "</td>"
++     "<td class='lbl'>Rollover Processing Fee</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.rolloverProcessingFee + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Waived or Reduced or No</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedOrReducedOrNo + "</td>"
++     "<td class='lbl'>Waived or Reduced Amount</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedReducedAmount + "</td>"
++   "</tr>"
+
++ "</table>"
+
+/* ════════════════════════════════════════════════════════
+   SECTION 5 – Scheduled Installments
+   List fields: scheduledInstallment, deductFrom
+   ════════════════════════════════════════════════════════ */
++ "<table class='sec'>"
++   "<tr><td class='sh' colspan='2'>Scheduled Installments</td></tr>"
+
++   "<tr>"
++     "<th class='col'>Scheduled Installment</th>"
++     "<th class='col'>Deduct From</th>"
++   "</tr>"
+
++ (function() {
+    var rows = "";
+    var list = tw.local.prepaymentRequest.scheduledInstallments;
+    if (list && list.listLength > 0) {
+      for (var i = 0; i < list.listLength; i++) {
+        rows += "<tr>"
+          + "<td class='val'>" + (list[i].scheduledInstallment || "") + "</td>"
+          + "<td class='val'>" + (list[i].deductFrom || "") + "</td>"
+          + "</tr>";
+      }
+    } else {
+      rows += "<tr><td colspan='2' style='text-align:center; color:#555; padding:6px;'>No data available</td></tr>";
+    }
+    return rows;
+  }())
+
++ "</table>"
+
+/* ════════════════════════════════════════════════════════
+   SECTION 6 – Calculation: Principal & Commission
+   Fields: daysAccrued, remainingDaysToFinalMaturity,
+           accruedCommissionAmount, penaltyBreakFundingCost,
+           processingFee, netCommissionDueFromCustomer,
+           total, penaltyWaivedAmount, penaltyFeeWaivedAmount
+   ════════════════════════════════════════════════════════ */
++ "<table class='sec'>"
++   "<tr><td class='sh' colspan='4'>Calculation: Principal &amp; Commission</td></tr>"
+
++   "<tr>"
++     "<td class='lbl'>Days Accrued</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.calculationDetails.daysAccrued + "</td>"
++     "<td class='lbl'>Remaining Days to Final Maturity</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.calculationDetails.remainingDaysToFinalMaturity + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Accrued Commission Amount</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.calculationDetails.accruedCommissionAmount + "</td>"
++     "<td class='lbl'>Penalty Break Funding Cost</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.calculationDetails.penaltyBreakFundingCost + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Processing Fee</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.calculationDetails.processingFee + "</td>"
++     "<td class='lbl'>Net Commission Due from Customer</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.calculationDetails.netCommissionDueFromCustomer + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Total</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.calculationDetails.total + "</td>"
++     "<td class='lbl'>Penalty Waived Amount</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.calculationDetails.penaltyWaivedAmount + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Penalty Fee Waived Amount</td>"
++     "<td class='val'>" + tw.local.prepaymentRequest.calculationDetails.penaltyFeeWaivedAmount + "</td>"
++     "<td class='lbl'></td>"
++     "<td class='val'></td>"
++   "</tr>"
+
++ "</table>"
+
+/* ════════════════════════════════════════════════════════
+   SECTION 7 – RM Table
+   List fields: decision, proposedPenaltyRate,
+                proposedProcessingRolloverFee, comments,
+                decisionDate
+   ════════════════════════════════════════════════════════ */
++ "<table class='sec'>"
++   "<tr><td class='sh' colspan='5'>RM Table</td></tr>"
+
++   "<tr>"
++     "<th class='col'>Decision</th>"
++     "<th class='col'>Proposed Penalty Rate</th>"
++     "<th class='col'>Proposed Processing / Rollover Fee</th>"
++     "<th class='col'>Comments</th>"
++     "<th class='col'>Decision Date</th>"
++   "</tr>"
+
++ (function() {
+    var rows = "";
+    var list = tw.local.prepaymentRequest.rmTable;
+    if (list && list.listLength > 0) {
+      for (var i = 0; i < list.listLength; i++) {
+        rows += "<tr>"
+          + "<td class='val'>" + (list[i].decision || "") + "</td>"
+          + "<td class='val'>" + (list[i].proposedPenaltyRate || "") + "</td>"
+          + "<td class='val'>" + (list[i].proposedProcessingRolloverFee || "") + "</td>"
+          + "<td class='val'>" + (list[i].comments || "") + "</td>"
+          + "<td class='val'>" + (list[i].decisionDate || "") + "</td>"
+          + "</tr>";
+      }
+    } else {
+      rows += "<tr><td colspan='5' style='text-align:center; color:#555; padding:6px;'>No data available</td></tr>";
+    }
+    return rows;
+  }())
+
++ "</table>"
+
+/* ════════════════════════════════════════════════════════
+   SECTION 8 – CC Table
+   List fields: name, decision, typeOfApproval,
+                conditionType, expectedComplianceDate,
+                condition, decisionDate
+   ════════════════════════════════════════════════════════ */
++ "<table class='sec'>"
++   "<tr><td class='sh' colspan='7'>CC Table</td></tr>"
+
++   "<tr>"
++     "<th class='col'>Name</th>"
++     "<th class='col'>Decision</th>"
++     "<th class='col'>Type of Approval</th>"
++     "<th class='col'>Condition Type</th>"
++     "<th class='col'>Expected Compliance Date</th>"
++     "<th class='col'>Condition</th>"
++     "<th class='col'>Decision Date</th>"
++   "</tr>"
+
++ (function() {
+    var rows = "";
+    var list = tw.local.prepaymentRequest.ccTable;
+    if (list && list.listLength > 0) {
+      for (var i = 0; i < list.listLength; i++) {
+        rows += "<tr>"
+          + "<td class='val'>" + (list[i].name || "") + "</td>"
+          + "<td class='val'>" + (list[i].decision || "") + "</td>"
+          + "<td class='val'>" + (list[i].typeOfApproval || "") + "</td>"
+          + "<td class='val'>" + (list[i].conditionType || "") + "</td>"
+          + "<td class='val'>" + (list[i].expectedComplianceDate || "") + "</td>"
+          + "<td class='val'>" + (list[i].condition || "") + "</td>"
+          + "<td class='val'>" + (list[i].decisionDate || "") + "</td>"
+          + "</tr>";
+      }
+    } else {
+      rows += "<tr><td colspan='7' style='text-align:center; color:#555; padding:6px;'>No data available</td></tr>";
+    }
+    return rows;
+  }())
+
++ "</table>"
+
+/* ════════════════════════════════════════════════════════
+   SECTION 9 – History Logs
+   List fields: username, userId, taskName, taskNumber,
+                taskCompletionDate, comments, decision
+   ════════════════════════════════════════════════════════ */
++ "<table class='sec'>"
++   "<tr><td class='sh' colspan='7'>History Logs</td></tr>"
+
++   "<tr>"
++     "<th class='col'>User Name</th>"
++     "<th class='col'>User ID</th>"
++     "<th class='col'>Task Name</th>"
++     "<th class='col'>Task Number</th>"
++     "<th class='col'>Task Completion Date</th>"
++     "<th class='col'>Comments</th>"
++     "<th class='col'>Decision</th>"
++   "</tr>"
+
++ (function() {
+    var rows = "";
+    var list = tw.local.prepaymentRequest.historyLogs;
+    if (list && list.listLength > 0) {
+      for (var i = 0; i < list.listLength; i++) {
+        rows += "<tr>"
+          + "<td class='val'>" + (list[i].username || "") + "</td>"
+          + "<td class='val'>" + (list[i].userId || "") + "</td>"
+          + "<td class='val'>" + (list[i].taskName || "") + "</td>"
+          + "<td class='val'>" + (list[i].taskNumber || "") + "</td>"
+          + "<td class='val'>" + (list[i].taskCompletionDate || "") + "</td>"
+          + "<td class='val'>" + (list[i].comments || "") + "</td>"
+          + "<td class='val'>" + (list[i].decision || "") + "</td>"
+          + "</tr>";
+      }
+    } else {
+      rows += "<tr><td colspan='7' style='text-align:center; color:#555; padding:6px;'>No data available</td></tr>";
+    }
+    return rows;
+  }())
+
++ "</table>"
+
+/* ════════════════════════════════════════════════════════
+   SECTION 10 – Approval History
+   ════════════════════════════════════════════════════════ */
++ "<table class='sec'>"
++   "<tr><td class='sh' colspan='5'>Approval History</td></tr>"
+
++   "<tr>"
++     "<th class='col'>User ID</th>"
++     "<th class='col'>User Name</th>"
++     "<th class='col'>Date / Time</th>"
++     "<th class='col'>Action</th>"
++     "<th class='col'>Comments</th>"
++   "</tr>"
+
++   "<tr>"
++     "<td colspan='5' style='text-align:center; color:#555; padding:6px;'>No data available</td>"
++   "</tr>"
+
++ "</table>"
+
+/* ════════════════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════════════════ */
++ "<div class='report-footer'>Page 1 of 1</div>"
+
++ "</div>"
++ "</body>"
++ "</html>";
