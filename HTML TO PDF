@@ -1,0 +1,18 @@
+import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
+import java.io.*;
+
+String html = tw.local.generatedHTML;
+
+ByteArrayOutputStream os = new ByteArrayOutputStream();
+
+PdfRendererBuilder builder = new PdfRendererBuilder();
+builder.withHtmlContent(html, null);
+builder.toStream(os);
+builder.run();
+
+byte[] pdfBytes = os.toByteArray();
+
+// If you want Base64 after generating PDF
+String base64Pdf = java.util.Base64.getEncoder().encodeToString(pdfBytes);
+
+tw.local.generatedPDFBase64 = base64Pdf;
