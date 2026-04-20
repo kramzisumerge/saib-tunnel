@@ -1,19 +1,5 @@
 tw.local.generatedHTML = ""
 
-/* =====================================================================
-   Saudi Investment Bank – Overdraft Request Report
-   BAW Server Script  (trimmed to match Refer Card - OD Report PDF)
-
-   SECTIONS:
-     1.  Account OD Request – Reference
-     2.  Clean / Technical OD
-     3.  Account OD Request – Transaction Details
-     4.  Customer Limit Information
-     5.  Total OD Amount Approved / In Progress Today
-     6.  Remark / Reason
-     7.  Approval History (list)
-   ===================================================================== */
-
 + "<!DOCTYPE html>"
 + "<html lang='en'>"
 + "<head>"
@@ -59,6 +45,8 @@ tw.local.generatedHTML = ""
 
 + ".page-stamp { text-align: right; font-size: 10px; color: #555; margin-bottom: 8px; }"
 + ".report-footer { text-align: right; font-size: 10px; color: #555; margin-top: 6px; }"
++ "table.page-break { page-break-before: always; }"
++ "tr.repeat-header td { border: none; padding-bottom: 8px; }"
 
 + "</style>"
 + "</head>"
@@ -198,18 +186,12 @@ tw.local.generatedHTML = ""
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'></td>"
-+     "<td class='val'></td>"
 +     "<td class='lbl'>Number of Transactions</td>"
 +     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.numberOfTransactions + "</td>"
-+   "</tr>"
-
-+   "<tr>"
-+     "<td class='lbl'></td>"
-+     "<td class='val'></td>"
 +     "<td class='lbl'>Reason</td>"
 +     "<td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.reason + "</td>"
 +   "</tr>"
+
 
 + "</table>"
 
@@ -303,7 +285,15 @@ tw.local.generatedHTML = ""
    Mapped from historyTable list fields:
      userId | username | taskCompletionDate | decision | comments
    ════════════════════════════════════════════════════════ */
-+ "<table class='sec'>"
++ "<table class='sec page-break'>"
++   "<tr class='repeat-header'>"
++     "<td colspan='5' style='border:none; padding: 4px 0 8px 0;'>"
++       "<table style='width:100%; border-collapse:collapse;'><tr>"
++         "<td style='border:none;'><img class='bank-logo' src='data:image/png;base64," + tw.local.bankLogoBase64 + "' alt='Saudi Investment Bank'/></td>"
++         "<td style='border:none; text-align:right;'><span class='report-title'>Refer Card - OD Report</span></td>"
++       "</tr></table>"
++     "</td>"
++   "</tr>"
 +   "<tr><td class='sh' colspan='5'>Approval History</td></tr>"
 
 +   "<tr>"
@@ -322,23 +312,12 @@ tw.local.generatedHTML = ""
         rows += "<tr>"
           + "<td class='val'>" + (list[i].userId        || "") + "</td>"
           + "<td class='val'>" + (list[i].username      || "") + "</td>"
-          + "<td class='val'>" + (list[i].taskCompletionDate ? list[i].taskCompletionDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") : "") + "</td>"
+          + "<td class='val'>" + (list[i].taskCompletionDate || "") + "</td>"
           + "<td class='val'>" + (list[i].decision      || "") + "</td>"
           + "<td class='val'>" + (list[i].comments      || "") + "</td>"
           + "</tr>";
       }
-    } else {
-      /* Render several blank rows to match the printed refer-card appearance */
-      for (var j = 0; j < 7; j++) {
-        rows += "<tr>"
-          + "<td class='val'>&nbsp;</td>"
-          + "<td class='val'>&nbsp;</td>"
-          + "<td class='val'>&nbsp;</td>"
-          + "<td class='val'>&nbsp;</td>"
-          + "<td class='val'>&nbsp;</td>"
-          + "</tr>";
-      }
-    }
+    } 
     return rows;
   }())
 
@@ -347,7 +326,7 @@ tw.local.generatedHTML = ""
 /* ════════════════════════════════════════════════════════
    FOOTER
    ════════════════════════════════════════════════════════ */
-+ "<div class='report-footer'>Page 1 of 2</div>"
++ "<div class='report-footer'>Page 2 of 2</div>"
 
 + "</div>"
 + "</body>"
@@ -356,4 +335,54 @@ tw.local.generatedHTML = ""
 
 
 
-CWTBG0019E: Unexpected exception during execution. Exception information: 'com.lombardisoftware.component.common.workflow.WorkflowProcessItemException: An exception occurred in activity "HTML Generate " of "Service Flow" with name "Generate OD Document". Task instance id "Task.5780". Details: "Runtime error in script ("Process: 'Generate OD Document' ProcessItem: 'HTML Generate ' Type: 'ITEM'" 1:0). Internal Script error: com.lombardisoftware.core.TeamWorksRuntimeException: com.lombardisoftware.core.TeamWorksException: Property o in class OverdraftRequest is not declared. It must be declared to be used. Script (line 1): 1 : tw.local.generatedHTML = "" 2 : 3 : /* ===================================================================== ".'.
+var autoObject = new tw.object.TransferRequest();
+autoObject.basicInformation = new tw.object.BasicInformation();
+autoObject.basicInformation.sourceSystem = "Refer Cards";
+autoObject.basicInformation.requestDate = new TWDate();
+autoObject.basicInformation.requestType = "";
+autoObject.basicInformation.requestInitiator = "Adham";
+autoObject.basicInformation.requestingBusinessLine = "";
+autoObject.basicInformation.requestingDepartment = "";
+autoObject.basicInformation.requestingBranch = "";
+autoObject.basicInformation.executionChannel = "";
+autoObject.transactionInformation = new tw.object.TransactionInformation();
+autoObject.transactionInformation.transactionType = new tw.object.toolkit.TWSYS.NameValuePair();
+autoObject.transactionInformation.transactionType.name = "";
+autoObject.transactionInformation.transactionType.value = "";
+autoObject.transactionInformation.accountToAccount = "";
+autoObject.transactionInformation.customerNumber = "";
+autoObject.transactionInformation.customerName = "";
+autoObject.transactionInformation.relationshipManager = "";
+autoObject.transactionInformation.selectedAccount = new tw.object.Account();
+autoObject.transactionInformation.selectedAccount.number = "";
+autoObject.transactionInformation.selectedAccount.currency = new tw.object.toolkit.TWSYS.NameValuePair();
+autoObject.transactionInformation.selectedAccount.currency.name = "";
+autoObject.transactionInformation.selectedAccount.currency.value = "";
+autoObject.transactionInformation.customerAccounts = new tw.object.listOf.Account();
+autoObject.transactionInformation.emailAddress = "a@a.com";
+autoObject.transactionInformation.creditAccountInformation = new tw.object.CreditAccountInformation();
+autoObject.transactionInformation.creditAccountInformation.customerNumber = "4353257547";
+autoObject.transactionInformation.creditAccountInformation.customerName = "";
+autoObject.transactionInformation.creditAccountInformation.accountNumber = "";
+autoObject.transactionInformation.creditAccountInformation.accountCurrency = "";
+autoObject.transactionInformation.transferAmount = 0.0;
+autoObject.transactionInformation.transferCurrency = new tw.object.toolkit.TWSYS.NameValuePair();
+autoObject.transactionInformation.transferCurrency.name = "";
+autoObject.transactionInformation.transferCurrency.value = "";
+autoObject.transactionInformation.beneficiaryName = "";
+autoObject.transactionInformation.requestValueDate = new tw.object.toolkit.TWSYS.NameValuePair();
+autoObject.transactionInformation.requestValueDate.name = "";
+autoObject.transactionInformation.requestValueDate.value = "";
+autoObject.transactionInformation.valueDate = "";
+autoObject.transactionInformation.requestExchangeRate = 0.0;
+autoObject.transactionInformation.equivalentAmount = 0.0;
+autoObject.transactionInformation.purposeOfTransfer = "";
+autoObject.transactionInformation.remark = "";
+autoObject.transactionInformation.isRequestForExchangeRate = false;
+autoObject.transactionInformation.isRequestForValueDate = false;
+autoObject.attachments = new tw.object.listOf.toolkit.SAIBCP.Attachment();
+autoObject.comment = "";
+autoObject.requestExpiry = new tw.object.RequestExpiry();
+autoObject.requestExpiry.fullDate = new TWDate();
+autoObject.requestExpiry.formattedDate = "";
+autoObject
