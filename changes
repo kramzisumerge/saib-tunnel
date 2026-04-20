@@ -1,0 +1,16 @@
++ ".report-footer { text-align: right; font-size: 10px; color: #555; margin-top: 6px; }"
++ "table.page-break { page-break-before: always; }"
++ "tr.repeat-header td { border: none; padding-bottom: 8px; }"
+
+
+
++ "<table class='sec page-break'>"
++   "<tr class='repeat-header'>"
++     "<td colspan='5' style='border:none; padding: 4px 0 8px 0;'>"
++       "<table style='width:100%; border-collapse:collapse;'><tr>"
++         "<td style='border:none;'><img class='bank-logo' src='data:image/png;base64," + tw.local.bankLogoBase64 + "' alt='Saudi Investment Bank'/></td>"
++         "<td style='border:none; text-align:right;'><span class='report-title'>Refer Card - OD Report</span></td>"
++       "</tr></table>"
++     "</td>"
++   "</tr>"
++   "<tr><td class='sh' colspan='5'>Approval History</td></tr>"
