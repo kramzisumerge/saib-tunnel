@@ -1,19 +1,17 @@
 tw.local.generatedHTML = ""
 
 /* =====================================================================
-   Saudi Investment Bank – Prepayment Request Report
+   Saudi Investment Bank – Overdraft Request Report
    BAW Server Script
 
    SECTIONS:
-     1.  Initiation Form Details
+     1.  Overdraft Initiation
      2.  Customer Information
-     3.  Prepayment / Loan Details
-     4.  Penalties & Charges
-     5.  Scheduled Installments
-     6.  Calculation: Principal & Commission
-     7.  RM Table (list)
-     8.  CC Table (list)
-     9.  History Logs (list)
+     3.  Overdraft Details
+     4.  Overdraft Type
+     5.  Overdraft Hierarchy
+     6.  CC Member Table (list)
+     7.  History Logs (list)
    ===================================================================== */
 
 + "<!DOCTYPE html>"
@@ -21,7 +19,7 @@ tw.local.generatedHTML = ""
 + "<head>"
 + "<meta charset='UTF-8'/>"
 + "<meta name='viewport' content='width=device-width, initial-scale=1.0'/>"
-+ "<title>Prepayment Request Report</title>"
++ "<title>Overdraft Request Report</title>"
 
 + "<style>"
 
@@ -73,44 +71,79 @@ tw.local.generatedHTML = ""
 + "<table class='header-table'>"
 +   "<tr>"
 +     "<td style='text-align:left;'><img class='bank-logo' src='data:image/png;base64," + tw.local.bankLogoBase64 + "' alt='Saudi Investment Bank'/></td>"
-+     "<td style='text-align:right;'><span class='report-title'>Prepayment Request Report</span></td>"
++     "<td style='text-align:right;'><span class='report-title'>Overdraft Request Report</span></td>"
 +   "</tr>"
 + "</table>"
 
 + "<div class='page-stamp'>Page 1 of 1</div>"
 
 /* ════════════════════════════════════════════════════════
-   SECTION 1 – Initiation Form Details
+   SECTION 1 – Overdraft Initiation
    ════════════════════════════════════════════════════════ */
 + "<table class='sec'>"
-+   "<tr><td class='sh' colspan='4'>Initiation Form Details</td></tr>"
++   "<tr><td class='sh' colspan='4'>Overdraft Initiation</td></tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Initiator Role</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.initiatorRole + "</td>"
-+     "<td class='lbl'>Date &amp; Time</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.requestDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") + "</td>"
-+   "</tr>"
-
-+   "<tr>"
++     "<td class='lbl'>System Reference</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.systemReference + "</td>"
 +     "<td class='lbl'>Source System</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.sourceSystem + "</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.sourceSystem + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Request Date</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") + "</td>"
 +     "<td class='lbl'>Request Type</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.requestType + "</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestType + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Request Initiator / Name</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.requestInitiator + "</td>"
-+     "<td class='lbl'>Loan Reference Number</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.loanReferenceNumber + "</td>"
++     "<td class='lbl'>Requesting Business Line</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestingBusinessLine + "</td>"
++     "<td class='lbl'>Requesting Department</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestingDepartment + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Request No</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.requestNumber + "</td>"
-+     "<td class='lbl'>On Behalf Of</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.initiationFormDetails.onBehalfOf + "</td>"
++     "<td class='lbl'>Requesting Branch</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestingBranch + "</td>"
++     "<td class='lbl'>Request Initiator</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestInitiator + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Execution Department</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.executionDepartment + "</td>"
++     "<td class='lbl'>Initiator Team</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.initiatorTeam + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Account Number</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.accountNumber + "</td>"
++     "<td class='lbl'>Request Number</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestNumber + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Transaction Type</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.transactionType + "</td>"
++     "<td class='lbl'>Number of Transactions</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.numberOfTransactions + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Transaction Amount</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.transactionAmount + "</td>"
++     "<td class='lbl'>Currency</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.currency + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Beneficiary Name</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.beneficiaryName + "</td>"
++     "<td class='lbl'>Skip RM</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.skipRM + "</td>"
 +   "</tr>"
 
 + "</table>"
@@ -122,229 +155,175 @@ tw.local.generatedHTML = ""
 +   "<tr><td class='sh' colspan='4'>Customer Information</td></tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Customer ID Number</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.customerInformation.idNo + "</td>"
-+     "<td class='lbl'>Customer Account Number</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.customerInformation.customerACNo + "</td>"
-+   "</tr>"
-
-+   "<tr>"
 +     "<td class='lbl'>Customer Name</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.customerInformation.customerName + "</td>"
-+     "<td class='lbl'>Branch / Region</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.customerInformation.region + "</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.customerName + "</td>"
++     "<td class='lbl'>Account Number</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.accountNumber + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Account Type</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.accountType + "</td>"
++     "<td class='lbl'>Relationship Manager</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.relationshipManager + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Sundry Analysis Code</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.sundryAnalysisCode + "</td>"
++     "<td class='lbl'>Currency (CCY)</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.ccy + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Request Equivalent Amount</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.requestEquivalentAmount + "</td>"
++     "<td class='lbl'>FX Rate</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.fxRate + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Reason</td>"
++     "<td class='val' colspan='3'>" + tw.local.overdraftRequest.overdraftCustomerInformation.reason + "</td>"
 +   "</tr>"
 
 + "</table>"
 
 /* ════════════════════════════════════════════════════════
-   SECTION 3 – Prepayment / Loan Details
+   SECTION 3 – Overdraft Details
    ════════════════════════════════════════════════════════ */
 + "<table class='sec'>"
-+   "<tr><td class='sh' colspan='4'>Prepayment / Loan Details</td></tr>"
++   "<tr><td class='sh' colspan='4'>Overdraft Details</td></tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Loan Type</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.loanType + "</td>"
-+     "<td class='lbl'>Previous Rollover Date</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.previousRolloverDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") + "</td>"
++     "<td class='lbl'>OD Limit</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.odLimit + "</td>"
++     "<td class='lbl'>Expiry Date of OD Limit</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.expiryDateOfODLimit.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Loan Outstanding Amount</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.loanOutstandingAmount + "</td>"
-+     "<td class='lbl'>Next Rollover Date</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.nextRolloverDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") + "</td>"
++     "<td class='lbl'>Available Balance</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.availableBalance + "</td>"
++     "<td class='lbl'>OD Excess</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.odExcess + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Existing Loan Profit Rate</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.existingLoanProfitRate + "</td>"
-+     "<td class='lbl'>Final Maturity Date</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.finalMaturityDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") + "</td>"
++     "<td class='lbl'>Uncleared Fund</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.unclearedFund + "</td>"
++     "<td class='lbl'>Net Clearing Today</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.netClearingToday + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Prepayment Amount</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.prepaymentAmount + "</td>"
-+     "<td class='lbl'>Prepayment Value Date</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.prepaymentValueDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") + "</td>"
++     "<td class='lbl'>Net Clearing Tomorrow</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.netClearingTomorrow + "</td>"
++     "<td class='lbl'>Net Clearing After Tomorrow</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.netClearingAfterTomorrow + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Settlement Type</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.fullOrPartialSettlement + "</td>"
-+     "<td class='lbl'>Original Drawdown Date</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.prepaymentLoanDetails.originalDrawdownDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") + "</td>"
++     "<td class='lbl'>Overall Total Risk Amount</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.overallTotalRiskAmount + "</td>"
++     "<td class='lbl'>Overall Total Limit Amount</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.overallTotalLimitAmount + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Overall Total Available Amount</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.overallTotalAvailableAmount + "</td>"
++     "<td class='lbl'>Total Transaction Amount Approved Today</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.totalTransactionAmountApprovedToday + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Total Transaction Amounts In Progress Today</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.totalTransactionAmountsInProgressToday + "</td>"
++     "<td class='lbl'>Total Transaction Amounts Approved Today (SAR)</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.totalTransactionAmountsApprovedTodaySAR + "</td>"
++   "</tr>"
+
++   "<tr>"
++     "<td class='lbl'>Total Transaction Amounts In Progress Today (SAR)</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.totalTransactionAmountsInProgressTodaySAR + "</td>"
++     "<td class='lbl'>Remark</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftDetails.remark + "</td>"
 +   "</tr>"
 
 + "</table>"
 
 /* ════════════════════════════════════════════════════════
-   SECTION 4 – Penalties & Charges
+   SECTION 4 – Overdraft Type
    ════════════════════════════════════════════════════════ */
 + "<table class='sec'>"
-+   "<tr><td class='sh' colspan='4'>Penalties &amp; Charges</td></tr>"
++   "<tr><td class='sh' colspan='4'>Overdraft Type</td></tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Commission To Be Charged Up To</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.commissionToBeChargedUpTo + "</td>"
-+     "<td class='lbl'>Penalty Rate</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.penaltyRate + "</td>"
++     "<td class='lbl'>Overdraft Type</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftType.overdraftType + "</td>"
++     "<td class='lbl'>Target Regularization Date</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftType.targetRegularizationDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Penalty Waived / Reduced as per CCR</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.penaltyWaivedReducedAsPerCCR + "</td>"
-+     "<td class='lbl'>Waived / Reduced %</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedOrReducedPercentage + "</td>"
++     "<td class='lbl'>Additional PN Held for SOT Excess</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftType.additionalPNHeldForSOTExcess + "</td>"
++     "<td class='lbl'>TACM or Loan Rollover</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftType.tacmOrLoanRollover + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Waived / Reduced</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedOrReduced + "</td>"
-+     "<td class='lbl'>Reduction Justification</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.reductionJustification + "</td>"
++     "<td class='lbl'>TACM Number</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftType.tacmNumber + "</td>"
++     "<td class='lbl'>Loan Rollover Number</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftType.loanRolloverNumber + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Treasury Penalty Rate</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.treasuryPenaltyRate + "</td>"
-+     "<td class='lbl'>Rollover Processing Fee</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.rolloverProcessingFee + "</td>"
-+   "</tr>"
-
-+   "<tr>"
-+     "<td class='lbl'>Waived or Reduced or No</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedOrReducedOrNo + "</td>"
-+     "<td class='lbl'>Waived or Reduced Amount</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.penaltyChargesDetails.waivedReducedAmount + "</td>"
++     "<td class='lbl'>Comments</td>"
++     "<td class='val' colspan='3'>" + tw.local.overdraftRequest.overdraftType.comments + "</td>"
 +   "</tr>"
 
 + "</table>"
 
 /* ════════════════════════════════════════════════════════
-   SECTION 5 – Scheduled Installments
-   List fields: scheduledInstallment, deductFrom
+   SECTION 5 – Overdraft Hierarchy
    ════════════════════════════════════════════════════════ */
 + "<table class='sec'>"
-+   "<tr><td class='sh' colspan='2'>Scheduled Installments</td></tr>"
++   "<tr><td class='sh' colspan='4'>Overdraft Hierarchy</td></tr>"
 
 +   "<tr>"
-+     "<th class='col'>Scheduled Installment</th>"
-+     "<th class='col'>Deduct From</th>"
-+   "</tr>"
-
-+ (function() {
-    var rows = "";
-    var list = tw.local.prepaymentRequest.scheduledInstallments;
-    if (list) {
-        rows += "<tr>"
-          + "<td class='val'>" + (list.scheduledInstallment || "") + "</td>"
-          + "<td class='val'>" + (list.deductFrom || "") + "</td>"
-          + "</tr>";
-      
-    } else {
-      rows += "<tr><td colspan='2' style='text-align:center; color:#555; padding:6px;'>No data available</td></tr>";
-    }
-    return rows;
-  }())
-
-+ "</table>"
-
-/* ════════════════════════════════════════════════════════
-   SECTION 6 – Calculation: Principal & Commission
-   Fields: daysAccrued, remainingDaysToFinalMaturity,
-           accruedCommissionAmount, penaltyBreakFundingCost,
-           processingFee, netCommissionDueFromCustomer,
-           total, penaltyWaivedAmount, penaltyFeeWaivedAmount
-   ════════════════════════════════════════════════════════ */
-+ "<table class='sec'>"
-+   "<tr><td class='sh' colspan='4'>Calculation: Principal &amp; Commission</td></tr>"
-
-+   "<tr>"
-+     "<td class='lbl'>Days Accrued</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.calculationPrincipalCommission.daysAccrued + "</td>"
-+     "<td class='lbl'>Remaining Days to Final Maturity</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.calculationPrincipalCommission.remainingDaysToFinalMaturity + "</td>"
++     "<td class='lbl'>RM Name</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftHierarchy.rmName + "</td>"
++     "<td class='lbl'>RM Code</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftHierarchy.rmCode + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Accrued Commission Amount</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.calculationPrincipalCommission.accruedCommissionAmount + "</td>"
-+     "<td class='lbl'>Penalty Break Funding Cost</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.calculationPrincipalCommission.penaltyBreakFundingCost + "</td>"
++     "<td class='lbl'>Area Manager</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftHierarchy.areaManager + "</td>"
++     "<td class='lbl'>Team Lead</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftHierarchy.teamLead + "</td>"
 +   "</tr>"
 
 +   "<tr>"
-+     "<td class='lbl'>Processing Fee</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.calculationPrincipalCommission.processingFee + "</td>"
-+     "<td class='lbl'>Net Commission Due from Customer</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.calculationPrincipalCommission.netCommissionDueFromCustomer + "</td>"
-+   "</tr>"
-
-+   "<tr>"
-+     "<td class='lbl'>Total</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.calculationPrincipalCommission.total + "</td>"
-+     "<td class='lbl'>Penalty Waived Amount</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.calculationPrincipalCommission.penaltyWaivedAmount + "</td>"
-+   "</tr>"
-
-+   "<tr>"
-+     "<td class='lbl'>Penalty Fee Waived Amount</td>"
-+     "<td class='val'>" + tw.local.prepaymentRequest.calculationPrincipalCommission.processingFeeWaivedAmount + "</td>"
-+     "<td class='lbl'></td>"
-+     "<td class='val'></td>"
++     "<td class='lbl'>Regional Head</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftHierarchy.regionalHead + "</td>"
++     "<td class='lbl'>Department Head</td>"
++     "<td class='val'>" + tw.local.overdraftRequest.overdraftHierarchy.departmentHead + "</td>"
 +   "</tr>"
 
 + "</table>"
 
 /* ════════════════════════════════════════════════════════
-   SECTION 7 – RM Table
-   List fields: decision, proposedPenaltyRate,
-                proposedProcessingRolloverFee, comments,
-                decisionDate
-   ════════════════════════════════════════════════════════ */
-+ "<table class='sec'>"
-+   "<tr><td class='sh' colspan='5'>Relationship Manager Table</td></tr>"
-
-+   "<tr>"
-+     "<th class='col'>Decision</th>"
-+     "<th class='col'>Proposed Penalty Rate</th>"
-+     "<th class='col'>Proposed Processing / Rollover Fee</th>"
-+     "<th class='col'>Comments</th>"
-+     "<th class='col'>Decision Date</th>"
-+   "</tr>"
-
-+ (function() {
-    var rows = "";
-    var list = tw.local.prepaymentRequest.rmTable;
-    if (list && list.listLength > 0) {
-      for (var i = 0; i < list.listLength; i++) {
-        rows += "<tr>"
-          + "<td class='val'>" + (list[i].decision || "") + "</td>"
-          + "<td class='val'>" + (list[i].proposedPenaltyRate || "") + "</td>"
-          + "<td class='val'>" + (list[i].proposedProcessingRolloverFee || "") + "</td>"
-          + "<td class='val'>" + (list[i].comments || "") + "</td>"
-          + "<td class='val'>" + (list[i].decisionDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") || "") + "</td>"
-          + "</tr>";
-      }
-    } else {
-      rows += "<tr><td colspan='5' style='text-align:center; color:#555; padding:6px;'>No data available</td></tr>";
-    }
-    return rows;
-  }())
-
-+ "</table>"
-
-/* ════════════════════════════════════════════════════════
-   SECTION 8 – CC Table
+   SECTION 6 – CC Member Table (list)
    List fields: name, decision, typeOfApproval,
                 conditionType, expectedComplianceDate,
                 condition, decisionDate
    ════════════════════════════════════════════════════════ */
 + "<table class='sec'>"
-+   "<tr><td class='sh' colspan='7'>Credit Committee Table</td></tr>"
++   "<tr><td class='sh' colspan='7'>Credit Committee Members</td></tr>"
 
 +   "<tr>"
 +     "<th class='col'>Name</th>"
@@ -358,7 +337,7 @@ tw.local.generatedHTML = ""
 
 + (function() {
     var rows = "";
-    var list = tw.local.prepaymentRequest.ccTable;
+    var list = tw.local.overdraftRequest.ccMember;
     if (list && list.listLength > 0) {
       for (var i = 0; i < list.listLength; i++) {
         rows += "<tr>"
@@ -366,9 +345,9 @@ tw.local.generatedHTML = ""
           + "<td class='val'>" + (list[i].decision || "") + "</td>"
           + "<td class='val'>" + (list[i].typeOfApproval || "") + "</td>"
           + "<td class='val'>" + (list[i].conditionType || "") + "</td>"
-          + "<td class='val'>" + (list[i].expectedComplianceDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") || "") + "</td>"
+          + "<td class='val'>" + (list[i].expectedComplianceDate ? list[i].expectedComplianceDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") : "") + "</td>"
           + "<td class='val'>" + (list[i].condition || "") + "</td>"
-          + "<td class='val'>" + (list[i].decisionDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") || "") + "</td>"
+          + "<td class='val'>" + (list[i].decisionDate ? list[i].decisionDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") : "") + "</td>"
           + "</tr>";
       }
     } else {
@@ -380,7 +359,7 @@ tw.local.generatedHTML = ""
 + "</table>"
 
 /* ════════════════════════════════════════════════════════
-   SECTION 9 – History Logs
+   SECTION 7 – History Logs (list)
    List fields: username, userId, taskName, taskNumber,
                 taskCompletionDate, comments, decision
    ════════════════════════════════════════════════════════ */
@@ -399,7 +378,7 @@ tw.local.generatedHTML = ""
 
 + (function() {
     var rows = "";
-    var list = tw.local.prepaymentRequest.historyLogs;
+    var list = tw.local.overdraftRequest.historyTable;
     if (list && list.listLength > 0) {
       for (var i = 0; i < list.listLength; i++) {
         rows += "<tr>"
@@ -407,7 +386,7 @@ tw.local.generatedHTML = ""
           + "<td class='val'>" + (list[i].userId || "") + "</td>"
           + "<td class='val'>" + (list[i].taskName || "") + "</td>"
           + "<td class='val'>" + (list[i].taskNumber || "") + "</td>"
-          + "<td class='val'>" + (list[i].taskCompletionDate || "") + "</td>"
+          + "<td class='val'>" + (list[i].taskCompletionDate ? list[i].taskCompletionDate.format("dd/MM/yyyy-HH:mm", "Asia/Riyadh") : "") + "</td>"
           + "<td class='val'>" + (list[i].comments || "") + "</td>"
           + "<td class='val'>" + (list[i].decision || "") + "</td>"
           + "</tr>";
@@ -420,7 +399,6 @@ tw.local.generatedHTML = ""
 
 + "</table>"
 
-
 /* ════════════════════════════════════════════════════════
    FOOTER
    ════════════════════════════════════════════════════════ */
@@ -429,81 +407,3 @@ tw.local.generatedHTML = ""
 + "</div>"
 + "</body>"
 + "</html>";
-
-
-
-
-
-
-
-
-
-
-
-
-var autoObject = new tw.object.OverdraftRequest();
-autoObject.overdraftInitiation = new tw.object.OverdraftInitiation();
-autoObject.overdraftInitiation.systemReference = "";
-autoObject.overdraftInitiation.sourceSystem = "";
-autoObject.overdraftInitiation.requestDate = new TWDate();
-autoObject.overdraftInitiation.requestType = "";
-autoObject.overdraftInitiation.requestingBusinessLine = "";
-autoObject.overdraftInitiation.requestingDepartment = "";
-autoObject.overdraftInitiation.requestingBranch = "";
-autoObject.overdraftInitiation.requestInitiator = "";
-autoObject.overdraftInitiation.executionDepartment = "";
-autoObject.overdraftInitiation.skipRM = false;
-autoObject.overdraftInitiation.accountNumber = "";
-autoObject.overdraftInitiation.transactionType = "";
-autoObject.overdraftInitiation.numberOfTransactions = 0;
-autoObject.overdraftInitiation.transactionAmount = 0.0;
-autoObject.overdraftInitiation.currency = "";
-autoObject.overdraftInitiation.beneficiaryName = "";
-autoObject.overdraftInitiation.initiatorTeam = "";
-autoObject.overdraftInitiation.requestNumber = "";
-autoObject.overdraftCustomerInformation = new tw.object.OverdraftCustomerInformation();
-autoObject.overdraftCustomerInformation.customerName = "";
-autoObject.overdraftCustomerInformation.accountNumber = "";
-autoObject.overdraftCustomerInformation.accountType = "";
-autoObject.overdraftCustomerInformation.relationshipManager = "";
-autoObject.overdraftCustomerInformation.sundryAnalysisCode = "";
-autoObject.overdraftCustomerInformation.ccy = "";
-autoObject.overdraftCustomerInformation.requestEquivalentAmount = 0.0;
-autoObject.overdraftCustomerInformation.fxRate = 0.0;
-autoObject.overdraftCustomerInformation.reason = "";
-autoObject.overdraftDetails = new tw.object.OverdraftDetails();
-autoObject.overdraftDetails.odLimit = 0.0;
-autoObject.overdraftDetails.expiryDateOfODLimit = new TWDate();
-autoObject.overdraftDetails.availableBalance = 0.0;
-autoObject.overdraftDetails.odExcess = 0.0;
-autoObject.overdraftDetails.unclearedFund = 0.0;
-autoObject.overdraftDetails.netClearingToday = 0.0;
-autoObject.overdraftDetails.netClearingTomorrow = 0.0;
-autoObject.overdraftDetails.netClearingAfterTomorrow = 0.0;
-autoObject.overdraftDetails.overallTotalRiskAmount = 0.0;
-autoObject.overdraftDetails.overallTotalLimitAmount = 0.0;
-autoObject.overdraftDetails.overallTotalAvailableAmount = 0.0;
-autoObject.overdraftDetails.totalTransactionAmountApprovedToday = 0.0;
-autoObject.overdraftDetails.totalTransactionAmountsInProgressToday = 0.0;
-autoObject.overdraftDetails.totalTransactionAmountsApprovedTodaySAR = 0.0;
-autoObject.overdraftDetails.totalTransactionAmountsInProgressTodaySAR = 0.0;
-autoObject.overdraftDetails.remark = "";
-autoObject.overdraftType = new tw.object.OverdraftType();
-autoObject.overdraftType.overdraftType = "";
-autoObject.overdraftType.targetRegularizationDate = new TWDate();
-autoObject.overdraftType.additionalPNHeldForSOTExcess = "";
-autoObject.overdraftType.comments = "";
-autoObject.overdraftType.tacmOrLoanRollover = "";
-autoObject.overdraftType.tacmNumber = 0;
-autoObject.overdraftType.loanRolloverNumber = 0;
-autoObject.attachment = new tw.object.listOf.toolkit.SAIBCP.Attachment();
-autoObject.historyTable = new tw.object.listOf.toolkit.SAIBCP.HistoryLog();
-autoObject.ccMember = new tw.object.listOf.CCMember();
-autoObject.overdraftHierarchy = new tw.object.OverdraftHierarchy();
-autoObject.overdraftHierarchy.rmName = "";
-autoObject.overdraftHierarchy.rmCode = "";
-autoObject.overdraftHierarchy.areaManager = "";
-autoObject.overdraftHierarchy.teamLead = "";
-autoObject.overdraftHierarchy.regionalHead = "";
-autoObject.overdraftHierarchy.departmentHead = "";
-autoObject
