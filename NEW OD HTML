@@ -1,0 +1,128 @@
+tw.local.generatedHTML = ""
+
++ "<!DOCTYPE html>"
++ "<html lang='en'>"
++ "<head>"
++ "<meta charset='UTF-8'/>"
++ "<meta name='viewport' content='width=device-width, initial-scale=1.0'/>"
++ "<title>Refer Card - OD Report</title>"
+
++ "<style>"
++ "body { font-family: Arial, sans-serif; font-size: 12px; color: #000; background: #fff; margin: 10px; }"
++ ".page { max-width: 900px; margin: 0 auto; }"
++ "table.sec { width: 100%; border-collapse: collapse; margin-bottom: 10px; }"
++ "table.sec td, table.sec th { border: 1px solid #000; padding: 4px 6px; vertical-align: middle; }"
++ "td.sh { background-color: #d9d9d9; font-weight: bold; text-align: left; }"
++ "td.lbl { background-color: #f2f2f2; font-weight: bold; width: 25%; }"
++ "td.val { background-color: #fff; width: 25%; }"
++ "th.col { background-color: #f2f2f2; font-weight: bold; text-align: left; }"
++ "</style>"
++ "</head>"
++ "<body>"
++ "<div class='page'>"
+
+/* ── Section: Request Info ── */
++ "<table class='sec'>"
++ "<tr><td class='sh' colspan='4'>Account OD Request - Reference</td></tr>"
++ "<tr><td class='lbl'>Requesting Department</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestingDepartment + "</td>"
++ "<td class='lbl'>Date & Time</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestDate.format("dd/MM/yyyy-HH:mm","Asia/Riyadh") + "</td></tr>"
++ "<tr><td class='lbl'>Requesting Branch</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestingBranch + "</td>"
++ "<td class='lbl'>Source System</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.sourceSystem + "</td></tr>"
++ "<tr><td class='lbl'>Initiator ID / Name</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestInitiator + "</td>"
++ "<td class='lbl'>System Reference</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.systemReference + "</td></tr>"
++ "<tr><td class='lbl'>Request No</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.requestNumber + "</td>"
++ "<td class='lbl'>External/Channel Reference</td><td class='val'></td></tr>"
++ "</table>"
+
+/* ── Section: OD Type ── */
++ "<table class='sec'>"
++ "<tr><td class='sh' colspan='2'>Clean / Technical OD</td></tr>"
++ "<tr><td class='lbl'>OD Type</td><td class='val'>" + tw.local.overdraftRequest.overdraftType.overdraftType + "</td></tr>"
++ "<tr><td class='lbl'>Target Regularization Date</td><td class='val'>" + tw.local.overdraftRequest.overdraftType.targetRegularizationDate.format("dd/MM/yyyy-HH:mm","Asia/Riyadh") + "</td></tr>"
++ "<tr><td class='lbl'>TACM #</td><td class='val'>" + tw.local.overdraftRequest.overdraftType.tacmNumber + "</td></tr>"
++ "<tr><td class='lbl'>Tracking #</td><td class='val'></td></tr>"
++ "</table>"
+
+/* ── Section: Transaction Details ── */
++ "<table class='sec'>"
++ "<tr><td class='sh' colspan='4'>Account OD Request - Transaction Details</td></tr>"
++ "<tr><td class='lbl'>Account Type</td><td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.accountType + "</td>"
++ "<td class='lbl'>Transaction Type</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.transactionType + "</td></tr>"
++ "<tr><td class='lbl'>Customer Name</td><td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.customerName + "</td>"
++ "<td class='lbl'>Transaction Amount</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.transactionAmount + "</td></tr>"
++ "<tr><td class='lbl'>Account Number</td><td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.accountNumber + "</td>"
++ "<td class='lbl'>Transaction Currency</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.currency + "</td></tr>"
++ "<tr><td class='lbl'>Account Currency</td><td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.ccy + "</td>"
++ "<td class='lbl'>FX Rate</td><td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.fxRate + "</td></tr>"
++ "<tr><td class='lbl'>Relationship Manager</td><td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.relationshipManager + "</td>"
++ "<td class='lbl'>Equivalent Amount</td><td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.requestEquivalentAmount + "</td></tr>"
++ "<tr><td class='lbl'>Sundry Analysis Code</td><td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.sundryAnalysisCode + "</td>"
++ "<td class='lbl'>Beneficiary Name</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.beneficiaryName + "</td></tr>"
++ "<tr><td class='lbl'>Number of Transactions</td><td class='val'>" + tw.local.overdraftRequest.overdraftInitiation.numberOfTransactions + "</td>"
++ "<td class='lbl'>Reason</td><td class='val'>" + tw.local.overdraftRequest.overdraftCustomerInformation.reason + "</td></tr>"
++ "</table>"
+
+/* ── Section: Customer Limit Info ── */
++ "<table class='sec'>"
++ "<tr><td class='sh' colspan='4'>Customer Limit Information</td></tr>"
++ "<tr><td class='lbl'>OD Limit</td><td class='val'>" + tw.local.overdraftRequest.overdraftDetails.odLimit + "</td>"
++ "<td class='lbl'>Uncleared Funds</td><td class='val'>" + tw.local.overdraftRequest.overdraftDetails.unclearedFund + "</td></tr>"
++ "<tr><td class='lbl'>Expiry Date of OD Limit</td><td class='val'>" + tw.local.overdraftRequest.overdraftDetails.expiryDateOfODLimit.format("dd/MM/yyyy-HH:mm","Asia/Riyadh") + "</td>"
++ "<td class='lbl'>Net Clearing Today</td><td class='val'>" + tw.local.overdraftRequest.overdraftDetails.netClearingToday + "</td></tr>"
++ "<tr><td class='lbl'>Available Balance</td><td class='val'>" + tw.local.overdraftRequest.overdraftDetails.availableBalance + "</td>"
++ "<td class='lbl'>Net Clearing Tomorrow</td><td class='val'>" + tw.local.overdraftRequest.overdraftDetails.netClearingTomorrow + "</td></tr>"
++ "<tr><td class='lbl'>OD Excess</td><td class='val'>" + tw.local.overdraftRequest.overdraftDetails.odExcess + "</td>"
++ "<td class='lbl'>Net Clearing After Tomorrow</td><td class='val'>" + tw.local.overdraftRequest.overdraftDetails.netClearingAfterTomorrow + "</td></tr>"
++ "</table>"
+
+/* ── Section: Total OD Amounts ── */
++ "<table class='sec'>"
++ "<tr><td class='sh' colspan='2'>Total OD Amount Approved/In Progress Today</td></tr>"
++ "<tr><td class='lbl'>Total OD Amount Approved Today</td><td class='val'>" + tw.local.overdraftRequest.overdraftDetails.totalTransactionAmountApprovedToday + "</td></tr>"
++ "<tr><td class='lbl'>Total OD Amount in Progress Today</td><td class='val'>" + tw.local.overdraftRequest.overdraftDetails.totalTransactionAmountsInProgressToday + "</td></tr>"
++ "</table>"
+
+/* ── Section: Remark ── */
++ "<table class='sec'>"
++ "<tr><td class='sh'>Remark / Reason</td></tr>"
++ "<tr><td class='val'>" + tw.local.overdraftRequest.overdraftDetails.remark + "</td></tr>"
++ "</table>"
+
+/* ── Section: Approval History ── */
++ "<table class='sec'>"
++ "<tr><td class='sh' colspan='5'>Approval History</td></tr>"
++ "<tr>"
++ "<th class='col'>User ID</th>"
++ "<th class='col'>User Name</th>"
++ "<th class='col'>Action Date/Time</th>"
++ "<th class='col'>Action Taken</th>"
++ "<th class='col'>Comments</th>"
++ "</tr>"
+
++ (function() {
+    var rows = "";
+    var list = tw.local.overdraftRequest.historyTable;
+    if (list && list.listLength > 0) {
+      for (var i = 0; i < list.listLength; i++) {
+        rows += "<tr>"
+          + "<td class='val'>" + (list[i].userId || "") + "</td>"
+          + "<td class='val'>" + (list[i].username || "") + "</td>"
+          + "<td class='val'>" + (list[i].taskCompletionDate ? list[i].taskCompletionDate.format("dd/MM/yyyy-HH:mm","Asia/Riyadh") : "") + "</td>"
+          + "<td class='val'>" + (list[i].decision || "") + "</td>"
+          + "<td class='val'>" + (list[i].comments || "") + "</td>"
+          + "</tr>";
+      }
+    } else {
+      rows += "<tr><td colspan='5' style='text-align:center; color:#555; padding:6px;'>No data available</td></tr>";
+    }
+    return rows;
+  }())
+
++ "</table>"
+
+/* ── Footer ── */
++ "<div class='report-footer'>Page 1 of 2</div>"
+
++ "</div>"
++ "</body>"
++ "</html>";
